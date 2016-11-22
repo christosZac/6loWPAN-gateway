@@ -1,3 +1,6 @@
 [submodule "contiki"]
 	path = contiki
 	url = git@github.com:contiki-os/contiki.git
+[submodule "californium"]
+	path = californium
+	url = https://github.com/eclipse/californium.git
