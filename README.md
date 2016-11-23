@@ -1,6 +1,7 @@
 #Setting up a 6loWPAN gateway
 
 ##Introduction
+A step-by-step guide for setting up a 6loWPAN gateway on a host machine. The gateway uses various tools in order to provide a wide spectrum of functionalities. Beyond the standard 802.15.4 interface, the gateway offers proxying between HTTP and CoAP protocols and communication between IPv4 and IPv6 space. Moreover, it implements a node-RED flow which enables pushing data to *relayr.* cloud and of course allows the user to build custom flows, engaging with different web-services. 
 
 ##Requirements
 
