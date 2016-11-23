@@ -6,10 +6,10 @@
 
 1. A gateway host machine with access to the Internet, like RPi.
 2. One Zolertia [Remote](https://github.com/Zolertia/Resources/wiki/RE-Mote) or [Firefly](https://github.com/Zolertia/Resources/wiki/Firefly) mote which will provide the 802.15.4 interface to the gateway.
-3. Tools for compiling and flashing Contiki code. This  step is required for flashing the edge-router and is optional for flashing motes of the wireless network. Step-by-step instructions on installing on various platforms can be found [here]().
+3. Tools for compiling and flashing Contiki code. This  step is required for flashing the edge-router and is optional for flashing motes of the wireless network. Step-by-step instructions on installing on various platforms can be found [here](https://github.com/Zolertia/Resources/wiki/Toolchain-and-tools).
 4. Apache Maven in order to compile californium-proxy. Detailed steps on installing can be found [here](https://maven.apache.org/install.html).
 
-##Set up
+##Deployment
 ###Border Router
 Follow these steps to get a IPv6 edge router Up&Running:
 
@@ -73,6 +73,8 @@ In order to get the *cf-proxy* on the gateway, go through the following:
 
 ###NodeRED
 
+Node-RED documentation [page](http://nodered.org/docs/) contains an Installation guide for various devices. Depending on your chosen host device, follow the instructions found [here](http://nodered.org/docs/getting-started/installation). When ready you should be able to [run](http://nodered.org/docs/getting-started/running) node_RED.
+
 ##Making requests
 Notice that in order to accept requests from a remote host (outside the local network) you need to forward the specific listening port of the application. Also most of the times setting a static IP address for your gateway-device is convenient.  
 *Port forwarding is device, platform and network specific and not a topic of this README.*
@@ -80,7 +82,7 @@ Notice that in order to accept requests from a remote host (outside the local ne
 HTTP requests can be made both locally and remotely. Using an HTTP request tool (or simply from your browser if it is a GET request) access:
 ```
 http://localhost:8080
-```
+```.
 The format for requesting a device resource is:
 
 ```
@@ -127,16 +129,21 @@ The format of such call is:
 ```shell
 curl -X POST -H "Content-Type: application/json" -H "Authorization: AUTH_TOKEN" -d "{VALUES in JSON format}" "https://CLOUD_DEVICE_PATH"
 ```
+The CoAP client must send a message with the following format:
+
+```
+"DEVICE_ID,AUTH_TOKEN,RESOURCE_MEANING,RESOURCE_VALUE"
+```
+Notice that the Node-RED CoAP server is listening to port *8181* and not to default *5683*.
 
 ##Documentation
-Californium  
-6loWPAN  
-CoAP  
-Apache Maven [documentation](https://maven.apache.org/guides/index.html)
-
-More on relayr. [API calls]() 
+Info and repositories of [Californium](http://www.eclipse.org/californium/)    
+Apache Maven [documentation](https://maven.apache.org/guides/index.html)  
+Node-RED [official page](https://nodered.org)  
+More on relayr. [API calls](http://docs.relayr.io/api/#Send-device-reading) 
 
 ##TODO
 Picture of border-router web-server  
 Proxy server screenshots  
 Unix bash script  
+Change the contiki-tools-installation link with recent
