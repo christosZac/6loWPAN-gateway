@@ -1,7 +1,7 @@
 #Setting up a 6loWPAN gateway
 
 ##Introduction
-A step-by-step guide for setting up a 6loWPAN gateway on a host machine. The gateway uses various tools in order to provide a wide spectrum of functionalities. Beyond the standard 802.15.4 interface, the gateway offers proxying between HTTP and CoAP protocols and communication between IPv4 and IPv6 space. Moreover, it implements a node-RED flow which enables pushing data to *relayr.* cloud and of course allows the user to build custom flows, engaging with different web-services. 
+A step-by-step guide on setting up a 6loWPAN gateway on a host machine. The gateway uses various tools in order to provide a wide spectrum of functionalities. Beyond the standard 802.15.4 interface, the gateway offers proxying between HTTP and CoAP protocols and communication between IPv4 and IPv6 space. Moreover, it implements a node-RED flow which enables pushing data to *relayr.* cloud and of course allows the user to build custom flows, engaging with different web-services. 
 
 ##Requirements
 
@@ -80,10 +80,8 @@ Node-RED documentation [page](http://nodered.org/docs/) contains an Installation
 Notice that in order to accept requests from a remote host (outside the local network) you need to forward the specific listening port of the application. Also most of the times setting a static IP address for your gateway-device is convenient.  
 *Port forwarding is device, platform and network specific and not a topic of this README.*
 ###HTTP requests
-HTTP requests can be made both locally and remotely. Using an HTTP request tool (or simply from your browser if it is a GET request) access:
-```
-http://localhost:8080
-```.
+HTTP requests can be made both locally and remotely. Using an HTTP request tool (or simply from your browser if it is a GET request) access:```http://localhost:8080```.
+
 The format for requesting a device resource is:
 
 ```
