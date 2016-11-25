@@ -14,7 +14,7 @@ A step-by-step guide on setting up a 6loWPAN gateway on a host machine. The gate
 ###Border Router
 Follow these steps to get a IPv6 edge router Up&Running:
 
-1. cd to Contiki border-router directory:
+1. 	```cd``` to Contiki ```border-router/``` directory:
 
 	```shell
 	cd contiki/examples/ipv6/rpl-border-router
@@ -29,7 +29,7 @@ Follow these steps to get a IPv6 edge router Up&Running:
 	```shell
 	make TARGET=zoul border-router.upload
 	```
-4. Change to Contiki tools directory and make *tunslip6*:
+4. Change to Contiki ```tools/``` directory and make *tunslip6*:
 	
 	```shell
 	cd contiki/tools
@@ -85,7 +85,7 @@ HTTP requests can be made both locally and remotely. Using an HTTP request tool 
 The format for requesting a device resource is:
 
 ```
-http://HOST_ADDR:HTTP_PORT/proxy/DEVICE_ADDR:DEVICE_PORT/RESOURCE_URL/
+http://<host_address>:<http_port>/proxy/<device_address>:<device_port>/<resource_uri>/
 ```
 An example request to a remote IPv6 CoAP device:
 
@@ -94,17 +94,17 @@ http://90.90.0.100:8080/proxy/[fd00::212:4b00:60d:3fee]:5683/toggleLED/
 ```
  
 ###CoAP requests
-Same is applied for CoAP requests. Using a CoAP client (like Firefox's [Copper Cu]()) you can make a request to the host and proxy it to HTTP or CoAP. Each case uses a different resource as seen below, but both use the **Proxy-Uri** header for storing the uri of the desired device.
+Same is applied for CoAP requests. Using a CoAP client (like Firefox's [Copper Cu](https://addons.mozilla.org/el/firefox/addon/copper-270430/)) you can make a request to the host and proxy it to HTTP or CoAP. Each case uses a different resource as seen below, but both use the **Proxy-Uri** header for storing the uri of the desired device.
 
 1. Proxy a CoAP request to a CoAP resource:  
 
 	```shell
-	coap://HOST_ADDR:COAP_PORT/coap2coap/
+	coap://<host_address>:<http_port>/coap2coap/
 	```
 2. Proxy a CoAP request to an HTTP resource:  
 
 	```shell
-	coap://HOST_ADDR:COAP_PORT/coap2http/
+	coap://<host_address>:<coap_port>/coap2http/
 	```
 
 Example: GET a resource from an IPv6 CoAP device through the gateway-host with address ```90.90.0.100``` :
@@ -114,8 +114,8 @@ Example: GET a resource from an IPv6 CoAP device through the gateway-host with a
 3. Make the request to ```coap://90.90.0.100:5683/coap2coap/```
 
 
-###Push data to the relayr. cloud
-For pushing data to the [relayr.]() cloud we will use the Node-RED flow located in this repository. The flow parses a formatted message and explicitly creates an API call to the cloud, using cURL.  
+###Push data to the *relayr.* cloud
+For pushing data to the *relayr.* cloud we will use the Node-RED flow located in this repository. The flow parses a formatted message and explicitly creates an API call to the cloud, using cURL.  
 
 In order to create the flow:
 
@@ -126,23 +126,25 @@ In order to create the flow:
 The format of such call is:  
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "Authorization: AUTH_TOKEN" -d "{VALUES in JSON format}" "https://CLOUD_DEVICE_PATH"
+curl -X POST -H "Content-Type: application/json" -H "Authorization: <authorization_token>" -d "{values in JSON format}" "https://api.relayr.io/devices/<device_id>/data"
 ```
 The CoAP client must send a message with the following format:
 
 ```
-"DEVICE_ID,AUTH_TOKEN,RESOURCE_MEANING,RESOURCE_VALUE"
+"<device_id>,<authorization_token>,<resource_meaning>,<resource_value>"
 ```
 Notice that the Node-RED CoAP server is listening to port *8181* and not to default *5683*.
 
 ##Documentation
-Info and repositories of [Californium](http://www.eclipse.org/californium/)    
-Apache Maven [documentation](https://maven.apache.org/guides/index.html)  
-Node-RED [official page](https://nodered.org)  
-More on relayr. [API calls](http://docs.relayr.io/api/#Send-device-reading) 
+Info and repositories of the tools described can be found on the following links:  
+
+* [Californium](http://www.eclipse.org/californium/).    
+* Apache Maven [documentation](https://maven.apache.org/guides/index.html).  
+* Node-RED [official page](https://nodered.org).  
+* *relayr.* [API calls](http://docs.relayr.io/api/#Send-device-reading) 
 
 ##TODO
-Picture of border-router web-server  
-Proxy server screenshots  
-Unix bash script  
-Change the contiki-tools-installation link with recent
+1. Screenshot of border-router web-server.  
+2. Proxy server screenshots.  
+3. Auto set after boot using bash script. 
+4. Change the contiki-tools-installation link with recent.
